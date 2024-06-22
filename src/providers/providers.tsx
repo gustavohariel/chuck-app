@@ -12,6 +12,6 @@ export const Providers = ({ children }: { children: ReactNode }) => (
     <ThemeProvider attribute="class" defaultTheme="dark">
       {children}
     </ThemeProvider>
-    {/* <ReactQueryDevtools initialIsOpen={false} /> */}
+    <ReactQueryDevtools initialIsOpen={false} />
   </QueryClientProvider>
 );
