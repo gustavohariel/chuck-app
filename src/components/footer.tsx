@@ -5,7 +5,7 @@ import { ToggleTheme } from './toggle-theme';
 
 export default function Footer() {
   return (
-    <footer className="bg-muted py-4 px-6 fixed bottom-0 left-0 right-0 flex justify-center items-center">
+    <footer className="bg-muted py-4 px-6 bottom-0 left-0 right-0 flex justify-center items-center">
       <div className="flex flex-row items-center">
         <Link
           href="https://github.com/gustavohariel"
@@ -15,7 +15,7 @@ export default function Footer() {
           <GitHubLogoIcon className="w-6 h-6 mr-2" />
           <span className="text-sm font-medium">Made by Gustavo Hariel</span>
         </Link>
-        <span className="pl-1 pb-1">
+        <span className="pl-1">
           <ToggleTheme />
         </span>
       </div>
