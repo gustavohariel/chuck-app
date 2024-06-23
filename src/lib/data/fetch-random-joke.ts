@@ -30,7 +30,5 @@ export const fetchRandomJoke = async (
       },
     },
   );
-  console.log(`Bearer ${process.env.CHUCK_API_KEY}`);
-  console.log(response);
   return response.data.data.randomJoke;
 };

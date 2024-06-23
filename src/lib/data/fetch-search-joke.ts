@@ -26,7 +26,7 @@ export const fetchSearchJoke = async (
     },
     {
       headers: {
-        Authorization: `Bearer ${process.env.CHUCK_API_API_KEY}`,
+        Authorization: `Bearer ${process.env.CHUCK_API_KEY}`,
       },
     },
   );
