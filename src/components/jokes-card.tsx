@@ -32,7 +32,7 @@ export default function JokesCard() {
               Joke Result
               {isLoading && (
                 <span className="ml-auto">
-                  <LoaderPinwheelIcon className="h-5 w-5 animate-spin" />
+                  <LoaderPinwheelIcon className="h-4 w-4 animate-spin" />
                 </span>
               )}
             </CardTitle>
