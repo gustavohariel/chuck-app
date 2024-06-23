@@ -5,7 +5,7 @@ import { ToggleTheme } from './toggle-theme';
 
 export default function Footer() {
   return (
-    <footer className="bg-muted py-4 px-6 bottom-0 left-0 right-0 flex justify-center items-center">
+    <footer className="bg-muted py-4 px-6 fixed bottom-0 left-0 right-0 flex justify-center items-center">
       <div className="flex flex-row items-center">
         <Link
           href="https://github.com/gustavohariel"
