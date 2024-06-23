@@ -2,16 +2,35 @@
 
 import React from 'react';
 import { Button } from './ui/button';
-import { useGetRandomJoke } from '@/lib/data/get-random-joke';
-import { useRouter } from 'next/navigation';
+import { useQuery } from '@tanstack/react-query';
+import { useJoke } from '@/contexts/joke-context';
+import { fetchRandomJoke } from '@/lib/data/fetch-random-joke';
 
 export default function RandomJokeButton() {
-  const { refetch, isLoading } = useGetRandomJoke();
-  const router = useRouter();
+  const { setJoke, setIsLoading, isLoading, setError } = useJoke();
 
-  const handleClick = () => {
-    refetch();
-    router.push('/');
+  const { refetch } = useQuery({
+    queryFn: async () => {
+      setIsLoading(true);
+      try {
+        const result = await fetchRandomJoke();
+        return result;
+      } catch (error) {
+        setError(error);
+        throw error;
+      } finally {
+        setIsLoading(false);
+      }
+    },
+    queryKey: ['randomJoke'],
+    enabled: false,
+  });
+
+  const handleClick = async () => {
+    const result = await refetch();
+    if (result.data) {
+      setJoke({ result: [result.data] });
+    }
   };
 
   return (
