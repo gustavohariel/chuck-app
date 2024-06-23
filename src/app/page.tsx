@@ -1,15 +1,13 @@
 import { CustomJokeTab } from '@/components/custom-joke-tab';
 import RandomJokeButton from '@/components/random-joke-button';
 import JokesCard from '@/components/jokes-card';
-import { ToggleTheme } from '@/components/toggle-theme';
-import { fetchJokeCategories } from '@/lib/fetch/fetch-joke-categories';
-import { fetchRandomJoke } from '@/lib/fetch/fetch-random-joke';
+import { fetchJokeCategories } from '@/lib/data/fetch-joke-categories';
 import {
   HydrationBoundary,
   QueryClient,
   dehydrate,
 } from '@tanstack/react-query';
-import { Suspense } from 'react';
+import { JokeProvider } from '@/contexts/joke-context';
 
 export default async function Home() {
   const queryClient = new QueryClient();
@@ -20,11 +18,11 @@ export default async function Home() {
   });
 
   return (
-    <Suspense>
-      <HydrationBoundary state={dehydrate(queryClient)}>
+    <HydrationBoundary state={dehydrate(queryClient)}>
+      <JokeProvider>
         <main className="pt-15 md:pt-12">
           <div className="flex flex-col items-center justify-center">
-            <div className="max-w-2xl border-x border-primary p-4">
+            <div className="max-w-2xl p-4">
               <div>
                 <h1 className="flex justify-center scroll-m-20 text-4xl font-extrabold text-primary tracking-tight lg:text-5xl">
                   Chuck Norris Facts
@@ -37,15 +35,15 @@ export default async function Home() {
               </div>
 
               <RandomJokeButton />
-              <div className="max-w-[350px] flex flex-col justify-center items-center space-y-4 mx-auto">
-                <p className="flex justify-center">Or...</p>
-                <CustomJokeTab />
+              <div className="max-w-[350px] md:max-w-[450px] flex flex-col justify-center items-center space-y-4 mx-auto">
                 <JokesCard />
+                <p className="flex justify-center">Or Make a Custom Search</p>
+                <CustomJokeTab />
               </div>
             </div>
           </div>
         </main>
-      </HydrationBoundary>
-    </Suspense>
+      </JokeProvider>
+    </HydrationBoundary>
   );
 }
