@@ -5,6 +5,6 @@ export type Joke = {
 };
 
 export type JokeSearchResult = {
-  total: number;
+  total?: number;
   result: Joke[];
 };
