@@ -1,3 +1,5 @@
+'use server';
+
 import axios from 'axios';
 import { Joke } from '../types';
 
@@ -5,8 +7,10 @@ export const fetchRandomJoke = async (
   name?: string,
   category?: string,
 ): Promise<Joke> => {
-  const response = await axios.post(process.env.NEXT_PUBLIC_CHUCK_API_URL!, {
-    query: `
+  const response = await axios.post(
+    process.env.NEXT_PUBLIC_CHUCK_API_URL!,
+    {
+      query: `
       query ($name: String, $category: String) {
         randomJoke(name: $name, category: $category) {
           id
@@ -15,10 +19,18 @@ export const fetchRandomJoke = async (
         }
       }
     `,
-    variables: {
-      name,
-      category,
+      variables: {
+        name,
+        category,
+      },
     },
-  });
+    {
+      headers: {
+        Authorization: `Bearer ${process.env.CHUCK_API_KEY}`,
+      },
+    },
+  );
+  console.log(`Bearer ${process.env.CHUCK_API_KEY}`);
+  console.log(response);
   return response.data.data.randomJoke;
 };
