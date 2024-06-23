@@ -35,7 +35,7 @@ export default async function Home() {
               </div>
 
               <RandomJokeButton />
-              <div className="max-w-[350px] md:max-w-[450px] flex flex-col justify-center items-center space-y-4 mx-auto">
+              <div className="max-w-[300px] md:max-w-[450px] flex flex-col justify-center items-center space-y-4 mx-auto">
                 <JokesCard />
                 <p className="flex justify-center">Or Make a Custom Search</p>
                 <CustomJokeTab />
